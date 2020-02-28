@@ -9,6 +9,8 @@ def client():
 
 
         hostname = sys.argv[1] #hostname
+        rsPort = int(sys.argv[2])
+        tsPort = int(sys.argv[3])
         connectTS = 0 #check to see if TS server is connected or not
         tsHostname = ""
         try:
@@ -27,13 +29,13 @@ def client():
 
 
 
-        server_binding = (localhost_addr, sys.argv[1]) #add rsPort
+        server_binding = (localhost_addr, rsPort) #add rsPort
         cs.connect(server_binding)
 
         with open("PROJI-HNS.txt") as fp:
             line = fp.readline() #get first line
             line = line.strip() #remove spaces
-            file = open("results.txt","w+")
+            file = open("RESOLVED.txt","w+")
             while line:
                 print "This line is: " + line
                 cs.sendall(line) #send to rs
@@ -57,7 +59,7 @@ def client():
 
                     if connectTS == 0: #initial connection to TS
                         print "intial TS connect"
-                        connectTS = connectTs(tsHostname)
+                        connectTS = connectTs(tsHostname, tsPort)
 
                     connectTS.sendall(line) #send to ts
                     data_from_server = connectTS.recv(1024) #recv from ts
@@ -80,7 +82,7 @@ def client():
 
 
 
-def connectTs(host):
+def connectTs(host, tsPort):
     try:
         tcs = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         print("[C]: Connect to TS")
@@ -92,7 +94,7 @@ def connectTs(host):
     localhost_addr = socket.gethostbyname(host)
 
     # connect to the server on local machine
-    server_binding = (localhost_addr, sys.argv[3])
+    server_binding = (localhost_addr, tsPort)
     #print(localhost_addr)
     tcs.connect(server_binding)
     return tcs

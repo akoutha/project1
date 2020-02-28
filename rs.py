@@ -22,7 +22,7 @@ def rs():
     except socket.error as err:
         print('socket open error: {}\n'.format(err))
         exit()
-    port = sys.argv[1] if len(sys.argv)>1 else 50788
+    port = int(sys.argv[1]) if len(sys.argv)>1 else 50788
     server_binding = ('', port)
     ss.bind(server_binding)
     ss.listen(1)
@@ -43,7 +43,7 @@ def rs():
         if data:
             print("Incoming data: " + data)
             result = findIP(data, table)
-            print("Outgoing data: " + data)
+            print("Outgoing data: " + result)
             connection.sendall(result)
 
         #finally:
