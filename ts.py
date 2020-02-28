@@ -22,7 +22,7 @@ def rs():
     except socket.error as err:
         print('socket open error: {}\n'.format(err))
         exit()
-    port = sys.argv[1] if len(sys.argv)>1 else 50788
+    port = sys.argv[1] if len(sys.argv)>1 else 50789
     server_binding = ('', port)
     ss.bind(server_binding)
     ss.listen(1)
@@ -69,11 +69,13 @@ def findIP(hostname, table):
                 entry = row[0]+" " + row[1] + " " + row[2]
                 return entry
     # Not found. return ns record
+    if not found:
+        return hostname + " - ERROR: HOST NOT FOUND"
     return ns
 
 
 def populateDNSTable(table):
-    with open("PROJI-DNSRS.txt") as f:
+    with open("PROJI-DNSTS.txt") as f:
         for line in f:
             inner_list = [elt.strip() for elt in line.split(' ')]
             # in alternative, if you need to use the file content as numbers
