@@ -19,3 +19,7 @@ We believe it happened because we kept opening an already open socket.  We fixed
 4. What did you learn by working on this project?
 Ruslan - This project further reinforced my knowledge on how DNS servers work.  I have setup websites in the past, but when it came time to configuring the DNS I always followed online tutorials. 
 Now I can say that I understand how DNS works on the backend and can figure out any website problems using what I learned from this class.
+
+Abishek - In addition we also learned how to do client server programming. 
+This was something that we never had experience in before and it was great to have an intro into how client server programming works. 
+This is very helpful especially when it comes to developing applications and other programs. Many applications rely on client server archeticture and its great to know how this conneciton works
