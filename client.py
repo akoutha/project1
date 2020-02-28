@@ -27,13 +27,13 @@ def client():
 
 
 
-        server_binding = (localhost_addr, 50788) #add rsPort
+        server_binding = (localhost_addr, sys.argv[1]) #add rsPort
         cs.connect(server_binding)
 
         with open("PROJI-HNS.txt") as fp:
             line = fp.readline() #get first line
             line = line.strip() #remove spaces
-            file = open("test.txt","w+")
+            file = open("results.txt","w+")
             while line:
                 print "This line is: " + line
                 cs.sendall(line) #send to rs
@@ -92,7 +92,7 @@ def connectTs(host):
     localhost_addr = socket.gethostbyname(host)
 
     # connect to the server on local machine
-    server_binding = (localhost_addr, 50789)
+    server_binding = (localhost_addr, sys.argv[3])
     #print(localhost_addr)
     tcs.connect(server_binding)
     return tcs

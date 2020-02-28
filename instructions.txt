@@ -77,7 +77,7 @@ python rs.py rsListenPort
 python client.py rsHostname rsListenPort tsListenPort
 
 Here tsListenPort (rsListenPort) is the port on which TS (RS) listens for
-requests and rsHostname is the hostname of the machine running the RS program. 
+requests and rsHostname is the hostname of the machine running the RS program.
 
 The hostname strings to be queried will be given one per line in a file
 PROJI-HNS.txt.
